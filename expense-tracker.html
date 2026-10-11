@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker — SyntexHub Project Suite</title>
+  <meta name="description" content="Personal Finance and Expense Tracker with analytics, category breakdown charts, monthly trends, and CSV export. SyntexHub Task 1.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/expense-tracker.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="brand-title">
+            <span>SyntexHub</span>
+            <span class="brand-badge">Project Suite</span>
+          </div>
+        </a>
+        <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close menu">&times;</button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Navigation</div>
+        <a href="index.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Dashboard</span>
+        </a>
+
+        <div class="nav-section-title">Applications</div>
+        <a href="expense-tracker.html" class="nav-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <span>Expense Tracker</span>
+        </a>
+        <a href="weather-app.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+          <span>Weather App</span>
+        </a>
+        <a href="notes-app.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span>Notes App</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="internship-tag">
+          <p>SyntexHub Internship</p>
+          <span>Task 1 • Web Development</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle navigation drawer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="search-bar-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="global-search" placeholder="Search projects or tools..." aria-label="Search">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle Theme">
+            <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </button>
+
+          <div class="user-profile-chip">
+            <div class="avatar-img">ST</div>
+            <div class="user-info">
+              <span class="user-name">Syntex Intern</span>
+              <span class="user-role">Frontend Engineer</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-container">
+        <!-- Page Title & Top Actions -->
+        <div class="page-top-bar">
+          <div class="page-title-group">
+            <h1>Expense Tracker</h1>
+            <p>Monitor personal cash flow, category distributions, and spending efficiency.</p>
+          </div>
+          <div class="top-bar-actions">
+            <button class="btn btn-secondary" id="btn-sync-cloud" title="Simulate asynchronous remote sync">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+              <span>Sync Cloud</span>
+            </button>
+            <button class="btn btn-secondary" id="btn-export-csv" title="Download CSV spreadsheet">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Export CSV</span>
+            </button>
+            <button class="btn btn-secondary" id="btn-load-demo" title="Restore sample demo data">
+              <span>Demo Data</span>
+            </button>
+            <button class="btn btn-primary" data-open-modal="transaction-modal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add Transaction</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sync status banner -->
+        <div class="sync-banner">
+          <div class="sync-status">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <span id="sync-status-text">Local Storage synced. Mock cloud API ready.</span>
+          </div>
+          <button class="btn btn-sm btn-outline" id="btn-clear-all" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">Clear All</button>
+        </div>
+
+        <!-- Four Financial Summary Cards -->
+        <div class="finance-stats-grid">
+          <div class="finance-stat-card stat-balance">
+            <div class="finance-stat-header">
+              <span class="finance-stat-title">Net Balance</span>
+              <div class="finance-stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              </div>
+            </div>
+            <div class="finance-stat-amount" id="stat-net-balance">$0.00</div>
+            <div class="finance-stat-sub">Current available liquidity</div>
+          </div>
+
+          <div class="finance-stat-card stat-income">
+            <div class="finance-stat-header">
+              <span class="finance-stat-title">Total Income</span>
+              <div class="finance-stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+              </div>
+            </div>
+            <div class="finance-stat-amount" id="stat-total-income" style="color: #34D399;">$0.00</div>
+            <div class="finance-stat-sub">From salary, freelancing, and yields</div>
+          </div>
+
+          <div class="finance-stat-card stat-expense">
+            <div class="finance-stat-header">
+              <span class="finance-stat-title">Total Expenses</span>
+              <div class="finance-stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              </div>
+            </div>
+            <div class="finance-stat-amount" id="stat-total-expense" style="color: #FB7185;">$0.00</div>
+            <div class="finance-stat-sub">All logged debit deductions</div>
+          </div>
+
+          <div class="finance-stat-card stat-savings">
+            <div class="finance-stat-header">
+              <span class="finance-stat-title">Savings Rate</span>
+              <div class="finance-stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+            </div>
+            <div class="finance-stat-amount" id="stat-savings-rate">0%</div>
+            <div class="finance-stat-sub">Income retained after expenses</div>
+          </div>
+        </div>
+
+        <!-- Analytics and Quick Add Grid -->
+        <div class="tracker-main-grid">
+          <!-- Left: Analytics and Visual Category Chart -->
+          <div class="card analytics-card">
+            <div class="card-header">
+              <h3 class="card-title">Spending Analytics & Breakdown</h3>
+              <span class="card-subtitle">Visual distribution by category</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container-flex">
+                <div class="chart-canvas-wrapper">
+                  <canvas id="categoryChartCanvas"></canvas>
+                  <div class="chart-center-label">
+                    <div class="center-title">Expenses</div>
+                    <div class="center-amount" id="chart-center-amount">$0</div>
+                  </div>
+                </div>
+
+                <div class="chart-legend-list" id="chart-legend-container">
+                  <!-- Injected dynamically -->
+                </div>
+              </div>
+
+              <!-- 5-Month Spending Strip -->
+              <div class="monthly-strip-wrapper">
+                <div class="monthly-strip-title">
+                  <span>Monthly Activity Overview (Income vs Expense)</span>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Last 5 Months</span>
+                </div>
+                <div class="monthly-bars" id="monthly-bars-container">
+                  <!-- Dynamic monthly bars -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Inline Transaction Quick Logger -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Log New Transaction</h3>
+              <span class="card-subtitle">Instant validation & persistence</span>
+            </div>
+            <div class="card-body">
+              <form id="transaction-form">
+                <!-- Type Selection Pill Radios -->
+                <div class="form-group">
+                  <label class="form-label">Transaction Type</label>
+                  <div class="type-radio-group">
+                    <label class="type-radio-label selected-expense">
+                      <input type="radio" name="tx-type" value="expense" checked>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                      <span>Expense</span>
+                    </label>
+                    <label class="type-radio-label">
+                      <input type="radio" name="tx-type" value="income">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                      <span>Income</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="tx-title">Title / Merchant *</label>
+                  <input type="text" id="tx-title" class="form-input" placeholder="e.g. Grocery Store, Client Invoice" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="tx-amount">Amount ($) *</label>
+                    <input type="number" id="tx-amount" class="form-input" step="0.01" min="0.01" placeholder="0.00" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="tx-category">Category *</label>
+                    <select id="tx-category" class="form-select">
+                      <option value="Food & Dining">Food & Dining</option>
+                      <option value="Housing">Housing</option>
+                      <option value="Salary">Salary</option>
+                      <option value="Freelance">Freelance</option>
+                      <option value="Investment">Investment</option>
+                      <option value="Utilities">Utilities</option>
+                      <option value="Health">Health</option>
+                      <option value="Entertainment">Entertainment</option>
+                      <option value="Shopping">Shopping</option>
+                      <option value="Transport">Transport</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="tx-date">Transaction Date *</label>
+                  <input type="date" id="tx-date" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="tx-notes">Notes (Optional)</label>
+                  <input type="text" id="tx-notes" class="form-input" placeholder="Memo, invoice #, or tags">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                  <span>Record Transaction</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transaction History Table Card -->
+        <div class="card">
+          <div class="table-toolbar">
+            <div class="toolbar-filters">
+              <div class="search-input-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="tx-search" placeholder="Search transactions...">
+              </div>
+
+              <select class="select-filter" id="filter-type">
+                <option value="all">All Types</option>
+                <option value="expense">Expenses Only</option>
+                <option value="income">Income Only</option>
+              </select>
+
+              <select class="select-filter" id="filter-category">
+                <option value="all">All Categories</option>
+                <option value="Food & Dining">Food & Dining</option>
+                <option value="Housing">Housing</option>
+                <option value="Salary">Salary</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Investment">Investment</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Health">Health</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Transport">Transport</option>
+                <option value="Other">Other</option>
+              </select>
+
+              <select class="select-filter" id="sort-transactions">
+                <option value="date-desc">Newest First</option>
+                <option value="date-asc">Oldest First</option>
+                <option value="amount-desc">Amount: High to Low</option>
+                <option value="amount-asc">Amount: Low to High</option>
+              </select>
+            </div>
+
+            <span class="badge badge-primary" id="filter-results-count">0 records</span>
+          </div>
+
+          <div class="transactions-table-container">
+            <table class="transactions-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="transactions-table-body">
+                <!-- Dynamically populated by expense-tracker.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        <p><strong>SyntexHub Project Suite</strong> — Built for SyntexHub Internship Task 1 (Web Development).</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Reusable Transaction Modal Dialog (Used for Editing) -->
+  <div class="modal-backdrop" id="transaction-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit Transaction</h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-transaction-form">
+          <input type="hidden" id="edit-tx-id">
+
+          <div class="form-group">
+            <label class="form-label">Transaction Type</label>
+            <div class="type-radio-group">
+              <label class="type-radio-label" id="edit-label-expense">
+                <input type="radio" name="edit-tx-type" value="expense">
+                <span>Expense</span>
+              </label>
+              <label class="type-radio-label" id="edit-label-income">
+                <input type="radio" name="edit-tx-type" value="income">
+                <span>Income</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-tx-title">Title / Merchant *</label>
+            <input type="text" id="edit-tx-title" class="form-input" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="edit-tx-amount">Amount ($) *</label>
+              <input type="number" id="edit-tx-amount" class="form-input" step="0.01" min="0.01" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-tx-category">Category *</label>
+              <select id="edit-tx-category" class="form-select">
+                <option value="Food & Dining">Food & Dining</option>
+                <option value="Housing">Housing</option>
+                <option value="Salary">Salary</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Investment">Investment</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Health">Health</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Transport">Transport</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-tx-date">Transaction Date *</label>
+            <input type="date" id="edit-tx-date" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-tx-notes">Notes</label>
+            <input type="text" id="edit-tx-notes" class="form-input">
+          </div>
+
+          <div class="modal-footer" style="padding: 1rem 0 0 0; background: transparent; border: none;">
+            <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/expense-tracker.js"></script>
+</body>
+</html>
